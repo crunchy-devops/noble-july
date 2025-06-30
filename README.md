@@ -69,7 +69,7 @@ verifier:
 - Run the container
 
   ```bash
-  docker run -d --name systemd-${DISTR}-${VERSION} --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:rw --cgroupns=host docker-systemd:${DISTR}-${VERSION}
+  docker run -d --name systemd-${DISTR}-${VERSION} --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:rw --add-host=puppet:10.200.15.216 --hostname=${DISTR}.home --cgroupns=host docker-systemd:${DISTR}-${VERSION}
   ```
 
 - Enter to the container

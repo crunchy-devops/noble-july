@@ -12,10 +12,9 @@ RUN INSTALL_PKGS='findutils glibc-common initscripts iproute git vim htop python
     && dnf clean all
 
 # install puppet agent
-RUN dnf dnf install https://yum.puppet.com/puppet8-release-el-9.noarch.rpm -yum \
-    && dnf install puppet-agent -yum \
-    && systemctl start puppet \
-    && systemctl enable puppet
+RUN dnf install https://yum.puppet.com/puppet8-release-el-9.noarch.rpm -y \
+    && dnf install puppet-agent -y
+
 
 # install ssh server
 RUN echo "root:${ROOT_PASSWORD}" | chpasswd && \
@@ -38,7 +37,7 @@ RUN find /etc/systemd/system \
     -print0 | xargs -0 rm -vf
 
 VOLUME [ "/sys/fs/cgroup" ]
-
+EXPOSE 22
 ENTRYPOINT [ "/usr/sbin/init" ]
 
 
